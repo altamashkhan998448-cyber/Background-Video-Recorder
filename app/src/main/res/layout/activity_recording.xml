@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#080B0A"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- HEADER -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BVR"
+            android:textColor="#00D6A0"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.12" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:text="Recording Setup"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Customize your video recording"
+            android:textColor="#A5AAA8"
+            android:textSize="14sp" />
+
+        <!-- CAMERA PREVIEW -->
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:layout_marginTop="24dp"
+            android:background="#151D1A">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="▣"
+                    android:textColor="#00D6A0"
+                    android:textSize="45sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="CAMERA PREVIEW"
+                    android:textColor="#FFFFFF"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Preview will appear here"
+                    android:textColor="#A5AAA8"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <!-- CAMERA SELECTION -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="CAMERA"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/rgCamera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="#151D1A"
+            android:orientation="horizontal"
+            android:padding="12dp">
+
+            <RadioButton
+                android:id="@+id/rbBackCamera"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:buttonTint="#00D6A0"
+                android:text="Back Camera"
+                android:textColor="#FFFFFF" />
+
+            <RadioButton
+                android:id="@+id/rbFrontCamera"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="#00D6A0"
+                android:text="Front Camera"
+                android:textColor="#FFFFFF" />
+
+        </RadioGroup>
+
+        <!-- VIDEO QUALITY -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:text="VIDEO QUALITY"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spVideoQuality"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="#1B2521"
+            android:padding="10dp" />
+
+        <!-- RECORDING DURATION -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:text="RECORDING DURATION"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spDuration"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:background="#1B2521"
+            android:padding="10dp" />
+
+        <!-- AUDIO OPTION -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="20dp"
+            android:background="#151D1A"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="14dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Record Audio"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp" />
+
+            <Switch
+                android:id="@+id/switchAudio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:buttonTint="#00D6A0"
+                android:thumbTint="#00D6A0"
+                android:trackTint="#52635B" />
+
+        </LinearLayout>
+
+        <!-- PREVIEW OPTION -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="10dp"
+            android:background="#151D1A"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="14dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Show Small Preview"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp" />
+
+            <Switch
+                android:id="@+id/switchPreview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:buttonTint="#00D6A0"
+                android:thumbTint="#00D6A0"
+                android:trackTint="#52635B" />
+
+        </LinearLayout>
+
+        <!-- FLASH OPTION -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="10dp"
+            android:background="#151D1A"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="14dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Flash"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp" />
+
+            <Switch
+                android:id="@+id/switchFlash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:buttonTint="#00D6A0"
+                android:thumbTint="#00D6A0"
+                android:trackTint="#52635B" />
+
+        </LinearLayout>
+
+        <!-- START BUTTON -->
+
+        <Button
+            android:id="@+id/btnBeginRecording"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="28dp"
+            android:backgroundTint="#00D6A0"
+            android:text="START RECORDING"
+            android:textColor="#07100D"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnBackHome"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#1B2521"
+            android:text="BACK TO HOME"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Recording availability depends on device hardware and Android permissions."
+            android:textColor="#777F7B"
+            android:textSize="11sp" />
+
+    </LinearLayout>
+
+</ScrollView>
