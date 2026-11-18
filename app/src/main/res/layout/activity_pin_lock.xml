@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#080B0A"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="25dp">
+
+        <!-- LOGO / BRAND -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BVR"
+            android:textColor="#00D6A0"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.15" />
+
+        <!-- LOCK ICON -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:text="🔒"
+            android:textSize="55sp" />
+
+        <!-- TITLE -->
+
+        <TextView
+            android:id="@+id/txtPinTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:gravity="center"
+            android:text="Enter Your PIN"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtPinSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:gravity="center"
+            android:text="Enter your 4-digit PIN to access recordings."
+            android:textColor="#A5AAA8"
+            android:textSize="14sp" />
+
+        <!-- PIN INPUT -->
+
+        <EditText
+            android:id="@+id/etPin"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="32dp"
+            android:background="#151D1A"
+            android:gravity="center"
+            android:hint="•  •  •  •"
+            android:inputType="numberPassword"
+            android:maxLength="4"
+            android:singleLine="true"
+            android:textColor="#00D6A0"
+            android:textColorHint="#65736B"
+            android:textSize="25sp"
+            android:letterSpacing="0.5" />
+
+        <!-- CONFIRM PIN INPUT -->
+
+        <EditText
+            android:id="@+id/etConfirmPin"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="13dp"
+            android:background="#151D1A"
+            android:gravity="center"
+            android:hint="Confirm 4-digit PIN"
+            android:inputType="numberPassword"
+            android:maxLength="4"
+            android:singleLine="true"
+            android:textColor="#00D6A0"
+            android:textColorHint="#65736B"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
+        <!-- ERROR MESSAGE -->
+
+        <TextView
+            android:id="@+id/txtPinError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:gravity="center"
+            android:textColor="#FF5555"
+            android:textSize="13sp"
+            android:visibility="gone" />
+
+        <!-- SUBMIT BUTTON -->
+
+        <Button
+            android:id="@+id/btnSubmitPin"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="25dp"
+            android:backgroundTint="#00D6A0"
+            android:text="UNLOCK RECORDINGS"
+            android:textColor="#07100D"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <!-- BACK BUTTON -->
+
+        <Button
+            android:id="@+id/btnCancelPin"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#1B2521"
+            android:text="BACK TO HOME"
+            android:textColor="#FFFFFF" />
+
+        <!-- FOOTER -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="Your recordings are protected by BVR."
+            android:textColor="#777F7B"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+</ScrollView>
