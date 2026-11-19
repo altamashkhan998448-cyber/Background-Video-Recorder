@@ -38,7 +38,7 @@
             android:textColor="#A5AAA8"
             android:textSize="14sp" />
 
-        <!-- CAMERA SETTINGS -->
+        <!-- RECORDING SETTINGS -->
 
         <TextView
             android:layout_width="match_parent"
@@ -207,13 +207,13 @@
 
         </LinearLayout>
 
-        <!-- PRIVACY -->
+        <!-- PRIVACY AND SECURITY -->
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:text="PRIVACY & SECURITY"
+            android:text="PRIVACY &amp; SECURITY"
             android:textColor="#00D6A0"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -331,7 +331,7 @@
 
         </LinearLayout>
 
-        <!-- APP VERSION -->
+        <!-- VERSION -->
 
         <TextView
             android:layout_width="match_parent"
