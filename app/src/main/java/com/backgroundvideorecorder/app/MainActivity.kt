@@ -1,6 +1,7 @@
 package com.backgroundvideorecorder.app
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
@@ -36,11 +37,11 @@ class MainActivity : Activity() {
         }
 
         findViewById<Button>(R.id.btnBeginRecording).setOnClickListener {
-            Toast.makeText(
+            val intent = Intent(
                 this,
-                "Recording engine will be connected next.",
-                Toast.LENGTH_SHORT
-            ).show()
+                CameraPreviewActivity::class.java
+            )
+            startActivity(intent)
         }
     }
 
