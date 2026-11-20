@@ -452,4 +452,278 @@
                     android:text="Portrait"
                     android:textColor="#303830"
                     android:textSize="15sp" />
-          
+          <!-- STORAGE DATA -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:id="@+id/storageProgress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:max="100"
+                android:progress="0" />
+
+            <TextView
+                android:id="@+id/txtStorageUsed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Used: 0 MB" />
+
+            <TextView
+                android:id="@+id/txtStorageAvailable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Available: 1 GB" />
+
+            <TextView
+                android:id="@+id/txtStoragePercent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0%" />
+
+            <TextView
+                android:id="@+id/txtStorageInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Storage information" />
+        </LinearLayout>
+
+        <!-- STORAGE BANNER -->
+        <FrameLayout
+            android:id="@+id/bannerStorageAd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <!-- CAMERA PREVIEW -->
+        <FrameLayout
+            android:id="@+id/cameraPreviewContainer"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/txtPreviewPlaceholder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Camera Preview" />
+        </FrameLayout>
+
+        <!-- SETTINGS BANNER -->
+        <FrameLayout
+            android:id="@+id/bannerSettingsAd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- RECORDING TIMER -->
+        <TextView
+            android:id="@+id/txtRecordingTimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="00:00:00"
+            android:textColor="#111111"
+            android:textSize="48sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtQualityInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="5dp"
+            android:paddingBottom="12dp"
+            android:text="Tap to record. You can lock the phone."
+            android:textColor="#555B55"
+            android:textSize="15sp" />
+
+        <!-- FLASH, START, PORTRAIT BUTTONS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="165dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnFlash"
+                    android:layout_width="68dp"
+                    android:layout_height="68dp"
+                    android:backgroundTint="#DDF5E1"
+                    android:text="ϟ"
+                    android:textColor="#17221A"
+                    android:textSize="32sp"
+                    app:cornerRadius="50dp"
+                    app:elevation="0dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="Flash"
+                    android:textColor="#303830"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.7"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnStartRecording"
+                    android:layout_width="145dp"
+                    android:layout_height="145dp"
+                    android:backgroundTint="#16864D"
+                    android:text="▣&#10;Start"
+                    android:textColor="#FFFFFF"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="100dp"
+                    app:elevation="0dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPortrait"
+                    android:layout_width="68dp"
+                    android:layout_height="68dp"
+                    android:backgroundTint="#DDF5E1"
+                    android:text="▱"
+                    android:textColor="#17221A"
+                    android:textSize="32sp"
+                    app:cornerRadius="50dp"
+                    app:elevation="0dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="Portrait"
+                    android:textColor="#303830"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- BOTTOM NAVIGATION -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="82dp"
+        android:background="#EDF0E9"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+
+        <LinearLayout
+            android:id="@+id/btnHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="#C9EBD1"
+                android:gravity="center"
+                android:text="⌂"
+                android:textColor="#10291A"
+                android:textSize="32sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textColor="#17221A"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnRecordings"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="▣"
+                android:textColor="#3B443D"
+                android:textSize="29sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recordings"
+                android:textColor="#303830"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnSettings"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="⚙"
+                android:textColor="#3B443D"
+                android:textSize="29sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Settings"
+                android:textColor="#303830"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- HIDDEN AUDIO COMPATIBILITY CONTROL -->
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchAudio"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:checked="true"
+        android:visibility="gone" />
+
+</LinearLayout>
