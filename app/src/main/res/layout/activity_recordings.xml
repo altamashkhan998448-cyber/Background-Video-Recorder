@@ -1,125 +1,147 @@
-<?xml version="1.0" encoding="utf-8"?><ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="#080B0A"
-android:fillViewport="true">
-
-<LinearLayout
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="18dp">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="BVR"
-        android:textColor="#00D6A0"
-        android:textSize="27sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:text="My Recordings"
-        android:textColor="#FFFFFF"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Your private recordings are stored here."
-        android:textColor="#A5AAA8"
-        android:textSize="14sp" />
+    android:layout_height="match_parent"
+    android:background="#080B0A"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:background="#151D1A"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="18dp">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RECORDING STORAGE"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txtRecordingsStorage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="0 MB USED / 1 GB FREE"
+            android:text="BVR"
             android:textColor="#00D6A0"
-            android:textSize="16sp"
+            android:textSize="27sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:text="My Recordings"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Your saved videos and intruder photos."
+            android:textColor="#A5AAA8"
+            android:textSize="14sp" />
+
+        <!-- Storage -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:background="#151D1A"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RECORDING STORAGE"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtRecordingsStorage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Calculating storage..."
+                android:textColor="#00D6A0"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!-- Videos heading -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="MY VIDEOS"
+            android:textColor="#00D6A0"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <!-- Empty videos message -->
+        <TextView
+            android:id="@+id/txtNoVideos"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_marginTop="10dp"
+            android:background="#151D1A"
+            android:gravity="center"
+            android:text="No recordings yet"
+            android:textColor="#A5AAA8"
+            android:textSize="14sp" />
+
+        <!-- Dynamic video list -->
+        <LinearLayout
+            android:id="@+id/videosContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp" />
+
+        <!-- Intruder selfies -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="INTRUDER SELFIES"
+            android:textColor="#00D6A0"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtNoIntruderPhotos"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginTop="10dp"
+            android:background="#151D1A"
+            android:gravity="center"
+            android:text="No intruder photos"
+            android:textColor="#A5AAA8"
+            android:textSize="14sp" />
+
+        <!-- Dynamic photo list -->
+        <LinearLayout
+            android:id="@+id/photosContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp" />
+
+        <Button
+            android:id="@+id/btnRecycleBin"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="22dp"
+            android:backgroundTint="#1B2521"
+            android:text="RECYCLE BIN"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnBackRecordings"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#00D6A0"
+            android:text="BACK TO HOME"
+            android:textColor="#07100D"
+            android:textStyle="bold" />
+
     </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="MY VIDEOS"
-        android:textColor="#00D6A0"
-        android:textSize="15sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/txtNoVideos"
-        android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:gravity="center"
-        android:background="#151D1A"
-        android:layout_marginTop="10dp"
-        android:text="No recordings yet"
-        android:textColor="#A5AAA8"
-        android:textSize="14sp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="INTRUDER SELFIES"
-        android:textColor="#00D6A0"
-        android:textSize="15sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/txtNoIntruderPhotos"
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:gravity="center"
-        android:background="#151D1A"
-        android:layout_marginTop="10dp"
-        android:text="No intruder photos"
-        android:textColor="#A5AAA8"
-        android:textSize="14sp" />
-
-    <Button
-        android:id="@+id/btnRecycleBin"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginTop="22dp"
-        android:backgroundTint="#1B2521"
-        android:text="RECYCLE BIN"
-        android:textColor="#FFFFFF" />
-
-    <Button
-        android:id="@+id/btnBackRecordings"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="#00D6A0"
-        android:text="BACK TO HOME"
-        android:textColor="#07100D"
-        android:textStyle="bold" />
-
-</LinearLayout>
 
 </ScrollView>
