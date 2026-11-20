@@ -6,129 +6,89 @@
     android:orientation="vertical"
     android:background="#F7FAF2">
 
-    <LinearLayout
+    <!-- MAIN HOME CONTENT -->
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:paddingStart="18dp"
-        android:paddingEnd="18dp">
+        android:fillViewport="true">
 
-        <!-- HEADER -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="76dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:paddingBottom="12dp">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="BVR"
-                android:textColor="#101710"
-                android:textSize="34sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="52dp"
-                android:layout_height="52dp"
-                android:layout_marginEnd="10dp"
-                android:background="#DDEFE0"
-                android:gravity="center"
-                android:text="💎"
-                android:textSize="25sp" />
-
-            <TextView
-                android:id="@+id/txtRecordingStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="46dp"
-                android:background="#D8F4DD"
-                android:gravity="center"
-                android:paddingStart="14dp"
-                android:paddingEnd="14dp"
-                android:text="● Ready"
-                android:textColor="#183D25"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <!-- STORAGE AND SETTINGS CARD -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="190dp"
-            app:cardBackgroundColor="#DDF5E1"
-            app:cardCornerRadius="26dp"
-            app:cardElevation="0dp"
-            app:strokeWidth="0dp">
-
+            <!-- HEADER -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="9dp">
+                android:layout_height="76dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                <FrameLayout
+                <TextView
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="BVR"
+                    android:textColor="#101710"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="140dp"
-                        android:layout_height="140dp"
-                        android:layout_gravity="center"
-                        app:cardBackgroundColor="#E8F8E9"
-                        app:cardCornerRadius="100dp"
-                        app:cardElevation="0dp"
-                        app:strokeColor="#B66A00"
-                        app:strokeWidth="8dp">
+                <TextView
+                    android:layout_width="52dp"
+                    android:layout_height="52dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="#DDEFE0"
+                    android:gravity="center"
+                    android:text="💎"
+                    android:textSize="25sp" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                <TextView
+                    android:id="@+id/txtRecordingStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="46dp"
+                    android:background="#D8F4DD"
+                    android:gravity="center"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:text="● Ready"
+                    android:textColor="#183D25"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-                            <TextView
-                                android:id="@+id/txtStorageTotal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="1 GB"
-                                android:textColor="#171717"
-                                android:textSize="27sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="free"
-                                android:textColor="#444444"
-                                android:textSize="18sp" />
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-                </FrameLayout>
+            <!-- STORAGE AND QUICK SETTINGS -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                app:cardBackgroundColor="#DDF5E1"
+                app:cardCornerRadius="26dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp">
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.7"
-                    android:orientation="vertical">
+                    android:orientation="horizontal"
+                    android:padding="9dp">
 
-                    <!-- DURATION AND QUALITY -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
 
                         <com.google.android.material.card.MaterialCardView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:layout_margin="4dp"
-                            app:cardBackgroundColor="#F0F8EC"
-                            app:cardCornerRadius="17dp"
-                            app:cardElevation="0dp">
+                            android:layout_width="132dp"
+                            android:layout_height="132dp"
+                            android:layout_gravity="center"
+                            app:cardBackgroundColor="#E8F8E9"
+                            app:cardCornerRadius="100dp"
+                            app:cardElevation="0dp"
+                            app:strokeColor="#B66A00"
+                            app:strokeWidth="7dp">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -137,507 +97,412 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/txtStorageTotal"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="⏱ 30 Min"
-                                    android:textColor="#17221A"
-                                    android:textSize="16sp"
+                                    android:text="1 GB"
+                                    android:textColor="#171717"
+                                    android:textSize="27sp"
                                     android:textStyle="bold" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Duration"
-                                    android:textColor="#505850"
+                                    android:text="storage"
+                                    android:textColor="#444444"
                                     android:textSize="14sp" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:layout_margin="4dp"
-                            app:cardBackgroundColor="#F0F8EC"
-                            app:cardCornerRadius="17dp"
-                            app:cardElevation="0dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="HQ Quality"
-                                    android:textColor="#17221A"
-                                    android:textSize="15sp"
-                                    android:textStyle="bold" />
-
-                                <Spinner
-                                    android:id="@+id/spVideoQuality"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="38dp"
-                                    android:gravity="center" />
-                            </LinearLayout>
-                        </com.google.android.material.card.MaterialCardView>
-                    </LinearLayout>
-
-                    <!-- CAMERA AND PREVIEW -->
+                    </FrameLayout>
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.7"
+                        android:orientation="vertical">
 
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:layout_margin="4dp"
-                            app:cardBackgroundColor="#F0F8EC"
-                            app:cardCornerRadius="17dp"
-                            app:cardElevation="0dp">
+                            android:orientation="horizontal">
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:orientation="vertical">
+                                android:layout_weight="1"
+                                android:layout_margin="4dp"
+                                app:cardBackgroundColor="#F0F8EC"
+                                app:cardCornerRadius="17dp"
+                                app:cardElevation="0dp">
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="▣ Camera"
-                                    android:textColor="#17221A"
-                                    android:textSize="15sp"
-                                    android:textStyle="bold" />
-
-                                <RadioGroup
-                                    android:id="@+id/rgCamera"
+                                <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="match_parent"
                                     android:gravity="center"
-                                    android:orientation="horizontal">
+                                    android:orientation="vertical">
 
-                                    <RadioButton
-                                        android:id="@+id/rbBackCamera"
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="⏱ 30 Min"
+                                        android:textColor="#17221A"
+                                        android:textSize="15sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Duration"
+                                        android:textColor="#505850"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:layout_margin="4dp"
+                                app:cardBackgroundColor="#F0F8EC"
+                                app:cardCornerRadius="17dp"
+                                app:cardElevation="0dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <Spinner
+                                        android:id="@+id/spVideoQuality"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:paddingStart="4dp"
+                                        android:paddingEnd="4dp"
+                                        android:backgroundTint="#B8D8BC" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Quality"
+                                        android:textColor="#505850"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
+                            </com.google.android.material.card.MaterialCardView>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:layout_margin="4dp"
+                                app:cardBackgroundColor="#F0F8EC"
+                                app:cardCornerRadius="17dp"
+                                app:cardElevation="0dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <RadioGroup
+                                        android:id="@+id/rgCamera"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:orientation="horizontal">
+
+                                        <RadioButton
+                                            android:id="@+id/rbBackCamera"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:checked="true"
+                                            android:text="Back"
+                                            android:textColor="#263A2A"
+                                            android:textSize="12sp" />
+
+                                        <RadioButton
+                                            android:id="@+id/rbFrontCamera"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="Front"
+                                            android:textColor="#263A2A"
+                                            android:textSize="12sp" />
+                                    </RadioGroup>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Camera"
+                                        android:textColor="#505850"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:layout_margin="4dp"
+                                app:cardBackgroundColor="#F0F8EC"
+                                app:cardCornerRadius="17dp"
+                                app:cardElevation="0dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <Switch
+                                        android:id="@+id/switchPreview"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:checked="true"
-                                        android:text="Back"
-                                        android:textSize="11sp" />
+                                        android:showText="false" />
 
-                                    <RadioButton
-                                        android:id="@+id/rbFrontCamera"
+                                    <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="Front"
-                                        android:textSize="11sp" />
-                                </RadioGroup>
-                            </LinearLayout>
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:layout_margin="4dp"
-                            app:cardBackgroundColor="#F0F8EC"
-                            app:cardCornerRadius="17dp"
-                            app:cardElevation="0dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="◉ Preview"
-                                    android:textColor="#17221A"
-                                    android:textSize="15sp"
-                                    android:textStyle="bold" />
-
-                                <androidx.appcompat.widget.SwitchCompat
-                                    android:id="@+id/switchPreview"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:checked="true"
-                                    android:text="Show"
-                                    android:textSize="11sp" />
-                            </LinearLayout>
-                        </com.google.android.material.card.MaterialCardView>
+                                        android:text="Preview"
+                                        android:textColor="#505850"
+                                        android:textSize="13sp" />
+                                </LinearLayout>
+                            </com.google.android.material.card.MaterialCardView>
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- STORAGE DATA: HIDDEN COMPATIBILITY VIEWS -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <ProgressBar
-                android:id="@+id/storageProgress"
-                style="?android:attr/progressBarStyleHorizontal"
+            </com.google.android.material.card.MaterialCardView>
+            <!-- STORAGE DETAILS -->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="6dp"
-                android:max="100"
-                android:progress="0" />
-
-            <TextView
-                android:id="@+id/txtStorageUsed"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Used: 0 MB" />
+                android:orientation="vertical"
+                android:paddingTop="9dp"
+                android:paddingBottom="5dp">
 
-            <TextView
-                android:id="@+id/txtStorageAvailable"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Available: 1 GB" />
+                <TextView
+                    android:id="@+id/txtStorageUsed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Used: 0 MB"
+                    android:textColor="#303830"
+                    android:textSize="13sp" />
 
-            <TextView
-                android:id="@+id/txtStoragePercent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0%" />
+                <ProgressBar
+                    android:id="@+id/storageProgress"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="5dp"
+                    android:max="100"
+                    android:progress="0"
+                    android:progressTint="#5C9C68"
+                    android:progressBackgroundTint="#D7E5D8" />
 
-            <TextView
-                android:id="@+id/txtStorageInfo"
-                android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="4dp">
+
+                    <TextView
+                        android:id="@+id/txtStorageAvailable"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Available: 1 GB"
+                        android:textColor="#536354"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/txtStoragePercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0%"
+                        android:textColor="#536354"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtStorageInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Storage usage"
+                    android:textColor="#536354"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <!-- STORAGE AD PLACEHOLDER -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/bannerStorageAd"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="#E8EDE6"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Advertisement"
+                    android:textColor="#7A827A"
+                    android:textSize="13sp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- CAMERA PREVIEW -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cameraPreviewContainer"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="8dp"
+                app:cardBackgroundColor="#18231B"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.camera.view.PreviewView
+                        android:id="@+id/cameraPreview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/txtPreviewPlaceholder"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Camera Preview"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp" />
+                </FrameLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- SETTINGS AD PLACEHOLDER -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/bannerSettingsAd"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="7dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="#E8EDE6"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Advertisement"
+                    android:textColor="#7A827A"
+                    android:textSize="13sp" />
+            </com.google.android.material.card.MaterialCardView>
+            <!-- TIMER -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Storage information" />
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingTop="12dp"
+                android:paddingBottom="8dp">
+
+                <TextView
+                    android:id="@+id/txtRecordingTimer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00:00:00"
+                    android:textColor="#17221A"
+                    android:textSize="36sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recording Duration"
+                    android:textColor="#687368"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <!-- QUALITY INFO -->
+            <TextView
+                android:id="@+id/txtQualityInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:paddingBottom="8dp"
+                android:text="Video quality: 720p"
+                android:textColor="#536354"
+                android:textSize="14sp" />
+
+            <!-- FLASH BUTTON -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnFlash"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="5dp"
+                android:text="⚡ Flash OFF"
+                android:textAllCaps="false"
+                android:textColor="#263A2A"
+                android:textSize="16sp"
+                app:backgroundTint="#DDEFE0"
+                app:cornerRadius="16dp"
+                app:strokeColor="#B7D7BC"
+                app:strokeWidth="1dp" />
+
+            <!-- START / STOP RECORDING BUTTON -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnStartRecording"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="12dp"
+                android:text="●  START RECORDING"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:backgroundTint="#267A3D"
+                app:cornerRadius="18dp" />
+
+            <!-- PORTRAIT BUTTON -->
+            <TextView
+                android:id="@+id/btnPortrait"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:background="#E5F1E5"
+                android:gravity="center"
+                android:text="▯  Portrait"
+                android:textColor="#303830"
+                android:textSize="18sp" />
+
         </LinearLayout>
-
-        <!-- BANNER PLACEHOLDER BELOW STORAGE -->
-        <FrameLayout
-            android:id="@+id/bannerStorageAd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
-
-        <!-- CAMERA PREVIEW -->
-        <FrameLayout
-            android:id="@+id/cameraPreviewContainer"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/txtPreviewPlaceholder"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="Camera Preview" />
-        </FrameLayout>
-
-        <!-- BANNER PLACEHOLDER BELOW RECORDING SETTINGS -->
-        <FrameLayout
-            android:id="@+id/bannerSettingsAd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <!-- TIMER -->
-        <TextView
-            android:id="@+id/txtRecordingTimer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="00:00:00"
-            android:textColor="#111111"
-            android:textSize="48sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txtQualityInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingTop="5dp"
-            android:paddingBottom="12dp"
-            android:text="Tap to record. You can lock the phone."
-            android:textColor="#555B55"
-            android:textSize="15sp" />
-
-        <!-- FLASH, START, PORTRAIT -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="165dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnFlash"
-                    android:layout_width="68dp"
-                    android:layout_height="68dp"
-                    android:backgroundTint="#DDF5E1"
-                    android:text="ϟ"
-                    android:textColor="#17221A"
-                    android:textSize="32sp"
-                    app:cornerRadius="50dp"
-                    app:elevation="0dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:text="Flash"
-                    android:textColor="#303830"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.7"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnStartRecording"
-                    android:layout_width="145dp"
-                    android:layout_height="145dp"
-                    android:backgroundTint="#16864D"
-                    android:text="▣&#10;Start"
-                    android:textColor="#FFFFFF"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    app:cornerRadius="100dp"
-                    app:elevation="0dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnPortrait"
-                    android:layout_width="68dp"
-                    android:layout_height="68dp"
-                    android:backgroundTint="#DDF5E1"
-                    android:text="▱"
-                    android:textColor="#17221A"
-                    android:textSize="32sp"
-                    app:cornerRadius="50dp"
-                    app:elevation="0dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:text="Portrait"
-                    android:textColor="#303830"
-                    android:textSize="15sp" />
-          <!-- STORAGE DATA -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <ProgressBar
-                android:id="@+id/storageProgress"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="6dp"
-                android:max="100"
-                android:progress="0" />
-
-            <TextView
-                android:id="@+id/txtStorageUsed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Used: 0 MB" />
-
-            <TextView
-                android:id="@+id/txtStorageAvailable"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Available: 1 GB" />
-
-            <TextView
-                android:id="@+id/txtStoragePercent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0%" />
-
-            <TextView
-                android:id="@+id/txtStorageInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Storage information" />
-        </LinearLayout>
-
-        <!-- STORAGE BANNER -->
-        <FrameLayout
-            android:id="@+id/bannerStorageAd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
-
-        <!-- CAMERA PREVIEW -->
-        <FrameLayout
-            android:id="@+id/cameraPreviewContainer"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/txtPreviewPlaceholder"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="Camera Preview" />
-        </FrameLayout>
-
-        <!-- SETTINGS BANNER -->
-        <FrameLayout
-            android:id="@+id/bannerSettingsAd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <!-- RECORDING TIMER -->
-        <TextView
-            android:id="@+id/txtRecordingTimer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="00:00:00"
-            android:textColor="#111111"
-            android:textSize="48sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txtQualityInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingTop="5dp"
-            android:paddingBottom="12dp"
-            android:text="Tap to record. You can lock the phone."
-            android:textColor="#555B55"
-            android:textSize="15sp" />
-
-        <!-- FLASH, START, PORTRAIT BUTTONS -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="165dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnFlash"
-                    android:layout_width="68dp"
-                    android:layout_height="68dp"
-                    android:backgroundTint="#DDF5E1"
-                    android:text="ϟ"
-                    android:textColor="#17221A"
-                    android:textSize="32sp"
-                    app:cornerRadius="50dp"
-                    app:elevation="0dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:text="Flash"
-                    android:textColor="#303830"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.7"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnStartRecording"
-                    android:layout_width="145dp"
-                    android:layout_height="145dp"
-                    android:backgroundTint="#16864D"
-                    android:text="▣&#10;Start"
-                    android:textColor="#FFFFFF"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    app:cornerRadius="100dp"
-                    app:elevation="0dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnPortrait"
-                    android:layout_width="68dp"
-                    android:layout_height="68dp"
-                    android:backgroundTint="#DDF5E1"
-                    android:text="▱"
-                    android:textColor="#17221A"
-                    android:textSize="32sp"
-                    app:cornerRadius="50dp"
-                    app:elevation="0dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:text="Portrait"
-                    android:textColor="#303830"
-                    android:textSize="15sp" />
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 
     <!-- BOTTOM NAVIGATION -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="82dp"
-        android:background="#EDF0E9"
-        android:gravity="center"
+        android:layout_height="70dp"
         android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#FFFFFF"
+        android:elevation="8dp"
         android:paddingStart="8dp"
         android:paddingEnd="8dp">
 
@@ -647,25 +512,23 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="#C9EBD1"
-                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="⌂"
-                android:textColor="#10291A"
-                android:textSize="32sp" />
+                android:textColor="#267A3D"
+                android:textSize="25sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Home"
-                android:textColor="#17221A"
-                android:textSize="14sp"
+                android:textColor="#267A3D"
+                android:textSize="12sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -675,22 +538,23 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="▣"
-                android:textColor="#3B443D"
-                android:textSize="29sp" />
+                android:textColor="#687368"
+                android:textSize="23sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Recordings"
-                android:textColor="#303830"
-                android:textSize="14sp" />
+                android:textColor="#687368"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -699,27 +563,28 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="true">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="⚙"
-                android:textColor="#3B443D"
-                android:textSize="29sp" />
+                android:textColor="#687368"
+                android:textSize="23sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Settings"
-                android:textColor="#303830"
-                android:textSize="14sp" />
+                android:textColor="#687368"
+                android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
 
-    <!-- HIDDEN AUDIO COMPATIBILITY CONTROL -->
-    <androidx.appcompat.widget.SwitchCompat
+    <!-- HIDDEN AUDIO CONTROL FOR EXISTING MAINACTIVITY COMPATIBILITY -->
+    <Switch
         android:id="@+id/switchAudio"
         android:layout_width="1dp"
         android:layout_height="1dp"
