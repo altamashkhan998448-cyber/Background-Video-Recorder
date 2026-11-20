@@ -4,12 +4,11 @@ import android.Manifest
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.IBinder
-import android.os.Environment
+import android.os.SystemClock
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleService
@@ -32,10 +31,25 @@ class RecordingService : LifecycleService() {
     companion object {
         const val ACTION_START = "BVR_START_RECORDING"
         const val ACTION_STOP = "BVR_STOP_RECORDING"
+        const val ACTION_STATE = "com.backgroundvideorecorder.app.RECORDING_STATE"
 
         const val EXTRA_CAMERA = "camera"
         const val EXTRA_QUALITY = "quality"
         const val EXTRA_AUDIO = "audio"
+
+        const val EXTRA_STATUS = "status"
+        const val EXTRA_ELAPSED_MS = "elapsed_ms"
+        const val EXTRA_RECORDED_BYTES = "recorded_bytes"
+        const val EXTRA_ERROR = "error"
+
+        const val STATUS_STARTING = "STARTING"
+        const val STATUS_RECORDING = "RECORDING"
+        const val STATUS_STOPPED = "STOPPED"
+        const val STATUS_ERROR = "ERROR"
+        const val STATUS_STORAGE_FULL = "STORAGE_FULL"
+
+        const val DEFAULT_STORAGE_LIMIT_BYTES =
+            1024L * 1024L * 1024L
 
         private const val CHANNEL_ID = "bvr_recording_channel"
         private const val NOTIFICATION_ID = 1001
@@ -43,7 +57,13 @@ class RecordingService : LifecycleService() {
 
     private var recording: androidx.camera.video.Recording? = null
     private var cameraProvider: ProcessCameraProvider? = null
+
     private var isRecording = false
+    private var startRequested = false
+    private var storageLimitTriggered = false
+
+    private var recordingStartedAt = 0L
+    private var usedBytesBeforeRecording = 0L
 
     override fun onStartCommand(
         intent: Intent?,
@@ -53,18 +73,31 @@ class RecordingService : LifecycleService() {
         super.onStartCommand(intent, flags, startId)
 
         when (intent?.action) {
+
             ACTION_STOP -> {
                 stopRecording()
-                return START_NOT_STICKY
             }
 
             ACTION_START -> {
-                if (isRecording) return START_NOT_STICKY
+
+                if (startRequested || recording != null) {
+                    return START_NOT_STICKY
+                }
+
+                startRequested = true
+                storageLimitTriggered = false
+
+                sendState(STATUS_STARTING)
 
                 val audioEnabled =
                     intent.getBooleanExtra(EXTRA_AUDIO, false)
 
                 if (!hasPermission(Manifest.permission.CAMERA)) {
+                    startRequested = false
+                    sendState(
+                        STATUS_ERROR,
+                        error = "Camera permission is missing."
+                    )
                     stopSelf()
                     return START_NOT_STICKY
                 }
@@ -73,6 +106,23 @@ class RecordingService : LifecycleService() {
                     audioEnabled &&
                     !hasPermission(Manifest.permission.RECORD_AUDIO)
                 ) {
+                    startRequested = false
+                    sendState(
+                        STATUS_ERROR,
+                        error = "Microphone permission is missing."
+                    )
+                    stopSelf()
+                    return START_NOT_STICKY
+                }
+
+                usedBytesBeforeRecording = getUsedStorageBytes()
+
+                if (
+                    usedBytesBeforeRecording >=
+                    DEFAULT_STORAGE_LIMIT_BYTES
+                ) {
+                    startRequested = false
+                    sendState(STATUS_STORAGE_FULL)
                     stopSelf()
                     return START_NOT_STICKY
                 }
@@ -91,20 +141,31 @@ class RecordingService : LifecycleService() {
                         0
                     }
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    startForeground(
-                        NOTIFICATION_ID,
-                        createNotification(),
-                        serviceType
-                    )
-                } else {
-                    startForeground(
-                        NOTIFICATION_ID,
-                        createNotification()
-                    )
-                }
+                try {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        startForeground(
+                            NOTIFICATION_ID,
+                            createNotification(),
+                            serviceType
+                        )
+                    } else {
+                        startForeground(
+                            NOTIFICATION_ID,
+                            createNotification()
+                        )
+                    }
 
-                startCameraRecording(intent)
+                    startCameraRecording(intent)
+
+                } catch (e: Exception) {
+                    startRequested = false
+                    sendState(
+                        STATUS_ERROR,
+                        error = e.message ?: "Unable to start recording."
+                    )
+                    stopForeground(STOP_FOREGROUND_REMOVE)
+                    stopSelf()
+                }
             }
         }
 
@@ -112,6 +173,7 @@ class RecordingService : LifecycleService() {
     }
 
     private fun startCameraRecording(intent: Intent) {
+
         val cameraProviderFuture =
             ProcessCameraProvider.getInstance(this)
 
@@ -145,10 +207,9 @@ class RecordingService : LifecycleService() {
                     FallbackStrategy.lowerQualityOrHigherThan(quality)
                 )
 
-                val recorderBuilder = Recorder.Builder()
+                val recorder = Recorder.Builder()
                     .setQualitySelector(qualitySelector)
-
-                val recorder = recorderBuilder.build()
+                    .build()
 
                 val videoCapture =
                     VideoCapture.withOutput(recorder)
@@ -164,7 +225,13 @@ class RecordingService : LifecycleService() {
                 startVideoFile(videoCapture, intent)
 
             } catch (e: Exception) {
-                stopRecording()
+                startRequested = false
+                sendState(
+                    STATUS_ERROR,
+                    error = e.message ?: "Camera setup failed."
+                )
+                stopForeground(STOP_FOREGROUND_REMOVE)
+                stopSelf()
             }
 
         }, ContextCompat.getMainExecutor(this))
@@ -175,10 +242,7 @@ class RecordingService : LifecycleService() {
         intent: Intent
     ) {
         try {
-            val recordingsFolder = File(
-                getExternalFilesDir(null),
-                "Recordings"
-            )
+            val recordingsFolder = getRecordingsFolder()
 
             if (!recordingsFolder.exists()) {
                 recordingsFolder.mkdirs()
@@ -216,17 +280,106 @@ class RecordingService : LifecycleService() {
             ) { event ->
 
                 when (event) {
+
                     is VideoRecordEvent.Start -> {
                         isRecording = true
+                        startRequested = false
+                        recordingStartedAt =
+                            SystemClock.elapsedRealtime()
+
+                        sendState(STATUS_RECORDING)
+                    }
+
+                    is VideoRecordEvent.Status -> {
+
+                        val recordedBytes =
+                            event.recordingStats.numBytesRecorded
+
+                        val elapsed =
+                            if (recordingStartedAt > 0L) {
+                                SystemClock.elapsedRealtime() -
+                                    recordingStartedAt
+                            } else {
+                                0L
+                            }
+
+                        sendState(
+                            STATUS_RECORDING,
+                            elapsed,
+                            recordedBytes
+                        )
+
+                        val totalUsed =
+                            usedBytesBeforeRecording + recordedBytes
+
+                        if (
+                            totalUsed >= DEFAULT_STORAGE_LIMIT_BYTES &&
+                            !storageLimitTriggered
+                        ) {
+                            storageLimitTriggered = true
+
+                            try {
+                                recording?.stop()
+                            } catch (_: Exception) {
+                            }
+                        }
                     }
 
                     is VideoRecordEvent.Finalize -> {
+
                         isRecording = false
+                        startRequested = false
                         recording = null
 
+                        val finalBytes =
+                            if (videoFile.exists()) {
+                                videoFile.length()
+                            } else {
+                                0L
+                            }
+
+                        val elapsed =
+                            if (recordingStartedAt > 0L) {
+                                SystemClock.elapsedRealtime() -
+                                    recordingStartedAt
+                            } else {
+                                0L
+                            }
+
+                        recordingStartedAt = 0L
+
                         if (event.hasError()) {
-                            videoFile.delete()
+                            if (videoFile.exists() &&
+                                videoFile.length() == 0L
+                            ) {
+                                videoFile.delete()
+                            }
+
+                            sendState(
+                                STATUS_ERROR,
+                                elapsed,
+                                finalBytes,
+                                "Recording could not be finalized."
+                            )
+
+                        } else if (storageLimitTriggered) {
+
+                            sendState(
+                                STATUS_STORAGE_FULL,
+                                elapsed,
+                                finalBytes
+                            )
+
+                        } else {
+
+                            sendState(
+                                STATUS_STOPPED,
+                                elapsed,
+                                finalBytes
+                            )
                         }
+
+                        cameraProvider?.unbindAll()
 
                         stopForeground(STOP_FOREGROUND_REMOVE)
                         stopSelf()
@@ -235,20 +388,84 @@ class RecordingService : LifecycleService() {
             }
 
         } catch (e: Exception) {
-            stopRecording()
+
+            isRecording = false
+            startRequested = false
+
+            sendState(
+                STATUS_ERROR,
+                error = e.message ?: "Recording failed."
+            )
+
+            stopForeground(STOP_FOREGROUND_REMOVE)
+            stopSelf()
         }
     }
 
     private fun stopRecording() {
-        try {
-            recording?.stop()
-        } catch (_: Exception) {
-        }
 
-        if (recording == null) {
+        try {
+            if (recording != null) {
+                recording?.stop()
+            } else {
+                isRecording = false
+                startRequested = false
+
+                sendState(STATUS_STOPPED)
+
+                cameraProvider?.unbindAll()
+                stopForeground(STOP_FOREGROUND_REMOVE)
+                stopSelf()
+            }
+        } catch (e: Exception) {
+            sendState(
+                STATUS_ERROR,
+                error = e.message ?: "Could not stop recording."
+            )
             stopForeground(STOP_FOREGROUND_REMOVE)
             stopSelf()
         }
+    }
+
+    private fun getRecordingsFolder(): File {
+        return File(
+            getExternalFilesDir(null),
+            "Recordings"
+        )
+    }
+
+    private fun getUsedStorageBytes(): Long {
+
+        val folder = getRecordingsFolder()
+
+        if (!folder.exists()) {
+            return 0L
+        }
+
+        return folder.walkTopDown()
+            .filter { it.isFile }
+            .sumOf { it.length() }
+    }
+
+    private fun sendState(
+        status: String,
+        elapsedMs: Long = 0L,
+        recordedBytes: Long = 0L,
+        error: String? = null
+    ) {
+        val stateIntent = Intent(ACTION_STATE).apply {
+            setPackage(packageName)
+
+            putExtra(EXTRA_STATUS, status)
+            putExtra(EXTRA_ELAPSED_MS, elapsedMs)
+            putExtra(EXTRA_RECORDED_BYTES, recordedBytes)
+
+            if (error != null) {
+                putExtra(EXTRA_ERROR, error)
+            }
+        }
+
+        sendBroadcast(stateIntent)
     }
 
     private fun hasPermission(permission: String): Boolean {
@@ -259,7 +476,9 @@ class RecordingService : LifecycleService() {
     }
 
     private fun createNotificationChannel() {
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
             val channel = NotificationChannel(
                 CHANNEL_ID,
                 "BVR Recording",
@@ -275,6 +494,7 @@ class RecordingService : LifecycleService() {
     }
 
     private fun createNotification(): Notification {
+
         return NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle("BVR Recording")
             .setContentText("Video recording is active")
@@ -289,6 +509,7 @@ class RecordingService : LifecycleService() {
     }
 
     override fun onDestroy() {
+
         try {
             recording?.stop()
             cameraProvider?.unbindAll()
