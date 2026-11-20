@@ -8,7 +8,7 @@ android:fillViewport="true">
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="18dp">
 
     <!-- HEADER -->
 
@@ -24,8 +24,7 @@ android:fillViewport="true">
             android:text="BVR"
             android:textColor="#00D6A0"
             android:textSize="27sp"
-            android:textStyle="bold"
-            android:letterSpacing="0.12" />
+            android:textStyle="bold" />
 
         <View
             android:layout_width="0dp"
@@ -33,10 +32,11 @@ android:fillViewport="true">
             android:layout_weight="1" />
 
         <TextView
+            android:id="@+id/txtRecordingStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="● READY"
-            android:textColor="#00D6A0"
+            android:text="● SETUP REQUIRED"
+            android:textColor="#FFC15A"
             android:textSize="12sp"
             android:textStyle="bold" />
 
@@ -47,58 +47,178 @@ android:fillViewport="true">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="24dp"
         android:text="Background Video Recorder"
         android:textColor="#FFFFFF"
-        android:textSize="25sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
-        android:text="Capture important moments while using other apps."
+        android:text="Record videos privately in the background."
         android:textColor="#A5AAA8"
         android:textSize="14sp" />
 
-    <!-- RECORDING CARD -->
+    <!-- RECORDING PREVIEW -->
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="190dp"
-        android:layout_marginTop="26dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
         android:background="#151D1A"
-        android:gravity="center"
         android:orientation="vertical"
-        android:padding="18dp">
+        android:padding="15dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="●"
-            android:textColor="#FF4545"
-            android:textSize="35sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="READY TO RECORD"
-            android:textColor="#FFFFFF"
-            android:textSize="19sp"
+            android:text="CAMERA PREVIEW"
+            android:textColor="#00D6A0"
+            android:textSize="13sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="9dp"
-            android:text="Your camera is currently inactive"
-            android:textColor="#A5AAA8"
-            android:textSize="13sp" />
+        <FrameLayout
+            android:id="@+id/cameraPreviewContainer"
+            android:layout_width="match_parent"
+            android:layout_height="175dp"
+            android:layout_marginTop="12dp"
+            android:background="#080B0A">
+
+            <TextView
+                android:id="@+id/txtPreviewPlaceholder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Camera preview will appear here"
+                android:textColor="#A5AAA8"
+                android:textSize="14sp" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Show Live Preview"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <Switch
+                android:id="@+id/switchPreview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:thumbTint="#00D6A0" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <!-- STORAGE CARD -->
+    <!-- CAMERA SELECTION -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:text="SELECT CAMERA"
+        android:textColor="#00D6A0"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/rgCamera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#151D1A"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <RadioButton
+            android:id="@+id/rbBackCamera"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:buttonTint="#00D6A0"
+            android:checked="true"
+            android:text="Back Camera"
+            android:textColor="#FFFFFF" />
+
+        <RadioButton
+            android:id="@+id/rbFrontCamera"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:buttonTint="#00D6A0"
+            android:text="Front Camera"
+            android:textColor="#FFFFFF" />
+
+    </RadioGroup>
+
+    <!-- VIDEO QUALITY -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:text="VIDEO QUALITY"
+        android:textColor="#00D6A0"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spVideoQuality"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginTop="9dp"
+        android:background="#1B2521"
+        android:padding="10dp" />
+
+    <TextView
+        android:id="@+id/txtQualityInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="480p and 720p FREE | 1080p AD UNLOCK"
+        android:textColor="#00D6A0"
+        android:textSize="12sp" />
+
+    <!-- AUDIO -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="18dp"
+        android:background="#151D1A"
+        android:gravity="center_vertical"
+        android:padding="14dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Record Audio"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+
+        <Switch
+            android:id="@+id/switchAudio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:thumbTint="#00D6A0" />
+
+    </LinearLayout>
+
+    <!-- STORAGE -->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -111,16 +231,17 @@ android:fillViewport="true">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="STORAGE"
+            android:text="RECORDING STORAGE"
             android:textColor="#FFFFFF"
             android:textSize="14sp"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/txtStorageInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="9dp"
-            android:text="1 GB FREE STORAGE"
+            android:layout_marginTop="10dp"
+            android:text="0 MB USED / 1 GB FREE"
             android:textColor="#00D6A0"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -135,53 +256,17 @@ android:fillViewport="true">
 
     </LinearLayout>
 
-    <!-- RECORDING SETTINGS INFO -->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="#151D1A"
-        android:orientation="vertical"
-        android:padding="17dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="RECORDING SETTINGS"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Video Quality       1080p"
-            android:textColor="#D6DEDA"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="9dp"
-            android:text="Camera                 Back Camera"
-            android:textColor="#D6DEDA"
-            android:textSize="14sp" />
-
-    </LinearLayout>
-
     <!-- START RECORDING -->
 
     <Button
         android:id="@+id/btnStartRecording"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:layout_marginTop="23dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="#00D6A0"
-        android:text="START RECORDING"
+        android:text="● START RECORDING"
         android:textColor="#07100D"
-        android:textSize="15sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <!-- RECORDINGS -->
@@ -193,8 +278,7 @@ android:fillViewport="true">
         android:layout_marginTop="13dp"
         android:backgroundTint="#1B2521"
         android:text="MY RECORDINGS"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp" />
+        android:textColor="#FFFFFF" />
 
     <!-- SETTINGS -->
 
@@ -205,13 +289,12 @@ android:fillViewport="true">
         android:layout_marginTop="10dp"
         android:backgroundTint="#1B2521"
         android:text="SETTINGS"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp" />
+        android:textColor="#FFFFFF" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="22dp"
         android:gravity="center"
         android:text="Use responsibly and follow local laws."
         android:textColor="#777F7B"
