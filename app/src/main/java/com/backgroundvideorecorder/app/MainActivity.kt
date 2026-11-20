@@ -1,15 +1,25 @@
 package com.backgroundvideorecorder.app
 
+import android.Manifest
 import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
-import android.widget.Button
-import android.widget.RadioGroup
-import android.widget.Spinner
-import android.widget.Switch
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.core.content.ContextCompat
 
 class MainActivity : Activity() {
+
+    private lateinit var startButton: Button
+    private lateinit var statusText: TextView
+
+    private var recordingStarted = false
+    private var pendingStart = false
+
+    companion object {
+        private const val PERMISSION_REQUEST = 200
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,70 +29,55 @@ class MainActivity : Activity() {
     private fun showHomeScreen() {
         setContentView(R.layout.activity_main)
 
-        val status = findViewById<TextView>(R.id.txtRecordingStatus)
-        val startButton = findViewById<Button>(R.id.btnStartRecording)
+        statusText = findViewById(R.id.txtRecordingStatus)
+        startButton = findViewById(R.id.btnStartRecording)
 
         val cameraGroup = findViewById<RadioGroup>(R.id.rgCamera)
         val qualitySpinner = findViewById<Spinner>(R.id.spVideoQuality)
         val audioSwitch = findViewById<Switch>(R.id.switchAudio)
         val previewSwitch = findViewById<Switch>(R.id.switchPreview)
 
-        status.text = "● SETUP REQUIRED"
+        statusText.text = "● READY TO SET UP"
         startButton.text = "START RECORDING"
 
         startButton.setOnClickListener {
-            Toast.makeText(
-                this,
-                "Recording engine abhi connect nahi hua hai. Agla step mein connect karenge.",
-                Toast.LENGTH_LONG
-            ).show()
-        }
-
-        cameraGroup.setOnCheckedChangeListener { _, checkedId ->
-            val camera = if (checkedId == R.id.rbFrontCamera) {
-                "Front Camera"
+            if (recordingStarted) {
+                stopVideoRecording()
             } else {
-                "Back Camera"
+                pendingStart = true
+                requestRecordingPermissions(
+                    audioSwitch.isChecked
+                )
             }
-
-            Toast.makeText(this, camera + " selected", Toast.LENGTH_SHORT).show()
         }
+
+        cameraGroup.setOnCheckedChangeListener { _, _ -> }
 
         qualitySpinner.setOnItemSelectedListener(
-            object : android.widget.AdapterView.OnItemSelectedListener {
+            object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
-                    parent: android.widget.AdapterView<*>?,
+                    parent: AdapterView<*>?,
                     view: android.view.View?,
                     position: Int,
                     id: Long
                 ) {
-                    val quality = parent?.getItemAtPosition(position).toString()
+                    val quality =
+                        parent?.getItemAtPosition(position).toString()
 
                     if (quality.contains("1080")) {
                         Toast.makeText(
                             this@MainActivity,
-                            "1080p will be available through an ad later.",
+                            "1080p will be unlocked with an ad later.",
                             Toast.LENGTH_SHORT
                         ).show()
                     }
                 }
 
                 override fun onNothingSelected(
-                    parent: android.widget.AdapterView<*>?
-                ) {
-                }
+                    parent: AdapterView<*>?
+                ) {}
             }
         )
-
-        audioSwitch.setOnCheckedChangeListener { _, isChecked ->
-            val message = if (isChecked) "Audio ON" else "Audio OFF"
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-        }
-
-        previewSwitch.setOnCheckedChangeListener { _, isChecked ->
-            val message = if (isChecked) "Live Preview ON" else "Live Preview OFF"
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-        }
 
         findViewById<Button>(R.id.btnRecordings).setOnClickListener {
             showRecordingsScreen()
@@ -91,6 +86,156 @@ class MainActivity : Activity() {
         findViewById<Button>(R.id.btnSettings).setOnClickListener {
             showSettingsScreen()
         }
+    }
+
+    private fun requestRecordingPermissions(audioEnabled: Boolean) {
+        val permissions = mutableListOf(
+            Manifest.permission.CAMERA
+        )
+
+        if (audioEnabled) {
+            permissions.add(Manifest.permission.RECORD_AUDIO)
+        }
+
+        if (Build.VERSION.SDK_INT >= 33) {
+            permissions.add(Manifest.permission.POST_NOTIFICATIONS)
+        }
+
+        val missingPermissions = permissions.filter {
+            ContextCompat.checkSelfPermission(
+                this,
+                it
+            ) != PackageManager.PERMISSION_GRANTED
+        }
+
+        if (missingPermissions.isEmpty()) {
+            startVideoRecording()
+        } else {
+            requestPermissions(
+                missingPermissions.toTypedArray(),
+                PERMISSION_REQUEST
+            )
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(
+            requestCode,
+            permissions,
+            grantResults
+        )
+
+        if (requestCode == PERMISSION_REQUEST && pendingStart) {
+            pendingStart = false
+
+            val cameraGranted =
+                ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.CAMERA
+                ) == PackageManager.PERMISSION_GRANTED
+
+            val audioSwitch =
+                findViewById<Switch>(R.id.switchAudio)
+
+            val audioGranted =
+                !audioSwitch.isChecked ||
+                    ContextCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.RECORD_AUDIO
+                    ) == PackageManager.PERMISSION_GRANTED
+
+            if (cameraGranted && audioGranted) {
+                startVideoRecording()
+            } else {
+                Toast.makeText(
+                    this,
+                    "Camera and selected audio permissions are required.",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
+    }
+
+    private fun startVideoRecording() {
+        val cameraGroup =
+            findViewById<RadioGroup>(R.id.rgCamera)
+
+        val qualitySpinner =
+            findViewById<Spinner>(R.id.spVideoQuality)
+
+        val audioSwitch =
+            findViewById<Switch>(R.id.switchAudio)
+
+        val camera = if (
+            cameraGroup.checkedRadioButtonId == R.id.rbFrontCamera
+        ) {
+            "FRONT"
+        } else {
+            "BACK"
+        }
+
+        val quality =
+            qualitySpinner.selectedItem?.toString() ?: "720p"
+
+        if (quality.contains("1080")) {
+            Toast.makeText(
+                this,
+                "1080p is reserved for the future ad unlock.",
+                Toast.LENGTH_LONG
+            ).show()
+            return
+        }
+
+        val intent = Intent(
+            this,
+            RecordingService::class.java
+        ).apply {
+            action = RecordingService.ACTION_START
+            putExtra(RecordingService.EXTRA_CAMERA, camera)
+            putExtra(RecordingService.EXTRA_QUALITY, quality)
+            putExtra(
+                RecordingService.EXTRA_AUDIO,
+                audioSwitch.isChecked
+            )
+        }
+
+        try {
+            ContextCompat.startForegroundService(this, intent)
+
+            recordingStarted = true
+            startButton.text = "STOP RECORDING"
+            statusText.text = "● STARTING RECORDING"
+
+        } catch (e: Exception) {
+            recordingStarted = false
+            startButton.text = "START RECORDING"
+            statusText.text = "● SETUP REQUIRED"
+
+            Toast.makeText(
+                this,
+                "Could not start recording: ${e.message}",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
+    private fun stopVideoRecording() {
+        val intent = Intent(
+            this,
+            RecordingService::class.java
+        ).apply {
+            action = RecordingService.ACTION_STOP
+        }
+
+        startService(intent)
+
+        recordingStarted = false
+        startButton.text = "START RECORDING"
+        statusText.text = "● RECORDING STOPPED"
     }
 
     private fun showRecordingsScreen() {
