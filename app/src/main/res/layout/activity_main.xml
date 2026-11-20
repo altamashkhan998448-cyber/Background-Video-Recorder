@@ -6,19 +6,18 @@
     android:orientation="vertical"
     android:background="#F7FAF2">
 
-    <!-- MAIN CONTENT -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:paddingStart="22dp"
-        android:paddingEnd="22dp">
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp">
 
-        <!-- TOP HEADER -->
+        <!-- HEADER -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="88dp"
+            android:layout_height="76dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -32,35 +31,34 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_marginEnd="12dp"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_marginEnd="10dp"
                 android:background="#DDEFE0"
                 android:gravity="center"
                 android:text="💎"
-                android:textSize="27sp" />
+                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/txtRecordingStatus"
                 android:layout_width="wrap_content"
-                android:layout_height="52dp"
+                android:layout_height="46dp"
                 android:background="#D8F4DD"
                 android:gravity="center"
-                android:paddingStart="18dp"
-                android:paddingEnd="18dp"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
                 android:text="● Ready"
                 android:textColor="#183D25"
-                android:textSize="21sp"
+                android:textSize="17sp"
                 android:textStyle="bold" />
-
         </LinearLayout>
 
-        <!-- STORAGE AND QUICK SETTINGS CARD -->
+        <!-- STORAGE AND SETTINGS CARD -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="205dp"
+            android:layout_height="190dp"
             app:cardBackgroundColor="#DDF5E1"
-            app:cardCornerRadius="30dp"
+            app:cardCornerRadius="26dp"
             app:cardElevation="0dp"
             app:strokeWidth="0dp">
 
@@ -68,23 +66,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:padding="12dp">
+                android:padding="9dp">
 
-                <!-- STORAGE GAUGE -->
                 <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1">
 
                     <com.google.android.material.card.MaterialCardView
-                        android:layout_width="164dp"
-                        android:layout_height="164dp"
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
                         android:layout_gravity="center"
                         app:cardBackgroundColor="#E8F8E9"
                         app:cardCornerRadius="100dp"
                         app:cardElevation="0dp"
                         app:strokeColor="#B66A00"
-                        app:strokeWidth="9dp">
+                        app:strokeWidth="8dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -98,7 +95,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="1 GB"
                                 android:textColor="#171717"
-                                android:textSize="29sp"
+                                android:textSize="27sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -106,22 +103,18 @@
                                 android:layout_height="wrap_content"
                                 android:text="free"
                                 android:textColor="#444444"
-                                android:textSize="20sp" />
-
+                                android:textSize="18sp" />
                         </LinearLayout>
-
                     </com.google.android.material.card.MaterialCardView>
-
                 </FrameLayout>
 
-                <!-- QUICK SETTING TILES -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.65"
+                    android:layout_weight="1.7"
                     android:orientation="vertical">
 
-                    <!-- FIRST ROW -->
+                    <!-- DURATION AND QUALITY -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
@@ -132,9 +125,9 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:layout_margin="5dp"
+                            android:layout_margin="4dp"
                             app:cardBackgroundColor="#F0F8EC"
-                            app:cardCornerRadius="22dp"
+                            app:cardCornerRadius="17dp"
                             app:cardElevation="0dp">
 
                             <LinearLayout
@@ -146,9 +139,9 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="⏱  30 Min"
+                                    android:text="⏱ 30 Min"
                                     android:textColor="#17221A"
-                                    android:textSize="19sp"
+                                    android:textSize="16sp"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -156,8 +149,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Duration"
                                     android:textColor="#505850"
-                                    android:textSize="17sp" />
-
+                                    android:textSize="14sp" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
 
@@ -165,9 +157,9 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:layout_margin="5dp"
+                            android:layout_margin="4dp"
                             app:cardBackgroundColor="#F0F8EC"
-                            app:cardCornerRadius="22dp"
+                            app:cardCornerRadius="17dp"
                             app:cardElevation="0dp">
 
                             <LinearLayout
@@ -179,9 +171,9 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="HQ  480p"
+                                    android:text="HQ Quality"
                                     android:textColor="#17221A"
-                                    android:textSize="19sp"
+                                    android:textSize="15sp"
                                     android:textStyle="bold" />
 
                                 <Spinner
@@ -189,13 +181,11 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="38dp"
                                     android:gravity="center" />
-
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
-
                     </LinearLayout>
 
-                    <!-- SECOND ROW -->
+                    <!-- CAMERA AND PREVIEW -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
@@ -206,9 +196,9 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:layout_margin="5dp"
+                            android:layout_margin="4dp"
                             app:cardBackgroundColor="#F0F8EC"
-                            app:cardCornerRadius="22dp"
+                            app:cardCornerRadius="17dp"
                             app:cardElevation="0dp">
 
                             <LinearLayout
@@ -220,9 +210,9 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="▣  Camera"
+                                    android:text="▣ Camera"
                                     android:textColor="#17221A"
-                                    android:textSize="18sp"
+                                    android:textSize="15sp"
                                     android:textStyle="bold" />
 
                                 <RadioGroup
@@ -238,17 +228,15 @@
                                         android:layout_height="wrap_content"
                                         android:checked="true"
                                         android:text="Back"
-                                        android:textSize="12sp" />
+                                        android:textSize="11sp" />
 
                                     <RadioButton
                                         android:id="@+id/rbFrontCamera"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="Front"
-                                        android:textSize="12sp" />
-
+                                        android:textSize="11sp" />
                                 </RadioGroup>
-
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
 
@@ -256,9 +244,9 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:layout_margin="5dp"
+                            android:layout_margin="4dp"
                             app:cardBackgroundColor="#F0F8EC"
-                            app:cardCornerRadius="22dp"
+                            app:cardCornerRadius="17dp"
                             app:cardElevation="0dp">
 
                             <LinearLayout
@@ -270,9 +258,9 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="◉  Preview"
+                                    android:text="◉ Preview"
                                     android:textColor="#17221A"
-                                    android:textSize="18sp"
+                                    android:textSize="15sp"
                                     android:textStyle="bold" />
 
                                 <androidx.appcompat.widget.SwitchCompat
@@ -280,25 +268,20 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:checked="true"
-                                    android:text="Show Preview"
-                                    android:textSize="12sp" />
-
+                                    android:text="Show"
+                                    android:textSize="11sp" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
-
                     </LinearLayout>
-
                 </LinearLayout>
-
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- STORAGE INFORMATION -->
+        <!-- STORAGE DATA: HIDDEN COMPATIBILITY VIEWS -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="5dp"
             android:visibility="gone">
 
             <ProgressBar
@@ -332,17 +315,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Storage information" />
-
         </LinearLayout>
 
-        <!-- FIRST BANNER SPACE -->
+        <!-- BANNER PLACEHOLDER BELOW STORAGE -->
         <FrameLayout
             android:id="@+id/bannerStorageAd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone" />
 
-        <!-- CAMERA PREVIEW CONTAINER -->
+        <!-- CAMERA PREVIEW -->
         <FrameLayout
             android:id="@+id/cameraPreviewContainer"
             android:layout_width="match_parent"
@@ -355,23 +337,21 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Camera Preview" />
-
         </FrameLayout>
 
-        <!-- SECOND BANNER SPACE -->
+        <!-- BANNER PLACEHOLDER BELOW RECORDING SETTINGS -->
         <FrameLayout
             android:id="@+id/bannerSettingsAd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone" />
 
-        <!-- FLEXIBLE EMPTY SPACE -->
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <!-- RECORDING TIMER -->
+        <!-- TIMER -->
         <TextView
             android:id="@+id/txtRecordingTimer"
             android:layout_width="match_parent"
@@ -379,7 +359,7 @@
             android:gravity="center"
             android:text="00:00:00"
             android:textColor="#111111"
-            android:textSize="54sp"
+            android:textSize="48sp"
             android:textStyle="bold" />
 
         <TextView
@@ -388,15 +368,15 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingTop="5dp"
-            android:paddingBottom="18dp"
+            android:paddingBottom="12dp"
             android:text="Tap to record. You can lock the phone."
             android:textColor="#555B55"
-            android:textSize="17sp" />
+            android:textSize="15sp" />
 
-        <!-- FLASH, START AND PORTRAIT BUTTONS -->
+        <!-- FLASH, START, PORTRAIT -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="205dp"
+            android:layout_height="165dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -409,44 +389,42 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnFlash"
-                    android:layout_width="82dp"
-                    android:layout_height="82dp"
+                    android:layout_width="68dp"
+                    android:layout_height="68dp"
                     android:backgroundTint="#DDF5E1"
                     android:text="ϟ"
                     android:textColor="#17221A"
-                    android:textSize="35sp"
+                    android:textSize="32sp"
                     app:cornerRadius="50dp"
                     app:elevation="0dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="7dp"
+                    android:paddingTop="5dp"
                     android:text="Flash"
                     android:textColor="#303830"
-                    android:textSize="18sp" />
-
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1.65"
+                android:layout_weight="1.7"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnStartRecording"
-                    android:layout_width="178dp"
-                    android:layout_height="178dp"
+                    android:layout_width="145dp"
+                    android:layout_height="145dp"
                     android:backgroundTint="#16864D"
                     android:text="▣&#10;Start"
                     android:textColor="#FFFFFF"
-                    android:textSize="24sp"
+                    android:textSize="22sp"
                     android:textStyle="bold"
                     app:cornerRadius="100dp"
                     app:elevation="0dp" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -458,16 +436,20 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnPortrait"
-                    android:layout_width="82dp"
-                    android:layout_height="82dp"
+                    android:layout_width="68dp"
+                    android:layout_height="68dp"
                     android:backgroundTint="#DDF5E1"
                     android:text="▱"
                     android:textColor="#17221A"
-                    android:textSize="35sp"
+                    android:textSize="32sp"
                     app:cornerRadius="50dp"
                     app:elevation="0dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                 
+                    android:paddingTop="5dp"
+                    android:text="Portrait"
+                    android:textColor="#303830"
+                    android:textSize="15sp" />
+          
