@@ -1,400 +1,473 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/colorBackground"
-    android:fillViewport="true">
+    android:orientation="vertical"
+    android:background="#F7FAF2">
 
+    <!-- MAIN CONTENT -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical"
-        android:padding="18dp">
+        android:paddingStart="22dp"
+        android:paddingEnd="22dp">
 
-        <!-- HEADER -->
-
+        <!-- TOP HEADER -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="88dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="BVR"
-                android:textColor="?attr/colorAccent"
-                android:textSize="27sp"
+                android:textColor="#101710"
+                android:textSize="34sp"
                 android:textStyle="bold" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" />
+            <TextView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginEnd="12dp"
+                android:background="#DDEFE0"
+                android:gravity="center"
+                android:text="💎"
+                android:textSize="27sp" />
 
             <TextView
                 android:id="@+id/txtRecordingStatus"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="● READY"
-                android:textColor="?attr/colorAccent"
-                android:textSize="12sp"
+                android:layout_height="52dp"
+                android:background="#D8F4DD"
+                android:gravity="center"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:text="● Ready"
+                android:textColor="#183D25"
+                android:textSize="21sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
-        <!-- TITLE -->
-
-        <TextView
+        <!-- STORAGE AND QUICK SETTINGS CARD -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Background Video Recorder"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:text="Record videos in the background."
-            android:textColor="?android:attr/textColorSecondary"
-            android:textSize="14sp" />
-
-        <!-- RECORDING TIMER -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:background="#151D1A"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="15dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="RECORDING TIME"
-                android:textColor="#A5AAA8"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtRecordingTimer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="00:00:00"
-                android:textColor="#00D6A0"
-                android:textSize="32sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <!-- CAMERA PREVIEW -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:background="#151D1A"
-            android:orientation="vertical"
-            android:padding="15dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="CAMERA PREVIEW"
-                android:textColor="#00D6A0"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-
-            <FrameLayout
-                android:id="@+id/cameraPreviewContainer"
-                android:layout_width="match_parent"
-                android:layout_height="190dp"
-                android:layout_marginTop="12dp"
-                android:background="#080B0A">
-
-                <TextView
-                    android:id="@+id/txtPreviewPlaceholder"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="Camera preview will appear here"
-                    android:textColor="#A5AAA8"
-                    android:textSize="14sp" />
-
-            </FrameLayout>
+            android:layout_height="205dp"
+            app:cardBackgroundColor="#DDF5E1"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="12dp">
 
-                <TextView
+                <!-- STORAGE GAUGE -->
+                <FrameLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Show Live Preview"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:textSize="14sp" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
 
-                <Switch
-                    android:id="@+id/switchPreview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:thumbTint="?attr/colorAccent" />
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="164dp"
+                        android:layout_height="164dp"
+                        android:layout_gravity="center"
+                        app:cardBackgroundColor="#E8F8E9"
+                        app:cardCornerRadius="100dp"
+                        app:cardElevation="0dp"
+                        app:strokeColor="#B66A00"
+                        app:strokeWidth="9dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txtStorageTotal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1 GB"
+                                android:textColor="#171717"
+                                android:textSize="29sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="free"
+                                android:textColor="#444444"
+                                android:textSize="20sp" />
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </FrameLayout>
+
+                <!-- QUICK SETTING TILES -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.65"
+                    android:orientation="vertical">
+
+                    <!-- FIRST ROW -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
+                            app:cardBackgroundColor="#F0F8EC"
+                            app:cardCornerRadius="22dp"
+                            app:cardElevation="0dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="⏱  30 Min"
+                                    android:textColor="#17221A"
+                                    android:textSize="19sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Duration"
+                                    android:textColor="#505850"
+                                    android:textSize="17sp" />
+
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
+                            app:cardBackgroundColor="#F0F8EC"
+                            app:cardCornerRadius="22dp"
+                            app:cardElevation="0dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="HQ  480p"
+                                    android:textColor="#17221A"
+                                    android:textSize="19sp"
+                                    android:textStyle="bold" />
+
+                                <Spinner
+                                    android:id="@+id/spVideoQuality"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="38dp"
+                                    android:gravity="center" />
+
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </LinearLayout>
+
+                    <!-- SECOND ROW -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
+                            app:cardBackgroundColor="#F0F8EC"
+                            app:cardCornerRadius="22dp"
+                            app:cardElevation="0dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="▣  Camera"
+                                    android:textColor="#17221A"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
+                                <RadioGroup
+                                    android:id="@+id/rgCamera"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <RadioButton
+                                        android:id="@+id/rbBackCamera"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:checked="true"
+                                        android:text="Back"
+                                        android:textSize="12sp" />
+
+                                    <RadioButton
+                                        android:id="@+id/rbFrontCamera"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Front"
+                                        android:textSize="12sp" />
+
+                                </RadioGroup>
+
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
+                            app:cardBackgroundColor="#F0F8EC"
+                            app:cardCornerRadius="22dp"
+                            app:cardElevation="0dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="◉  Preview"
+                                    android:textColor="#17221A"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
+                                <androidx.appcompat.widget.SwitchCompat
+                                    android:id="@+id/switchPreview"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:checked="true"
+                                    android:text="Show Preview"
+                                    android:textSize="12sp" />
+
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-        </LinearLayout>
-
-        <!-- CAMERA SELECTION -->
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:text="SELECT CAMERA"
-            android:textColor="#00D6A0"
-            android:textSize="13sp"
-            android:textStyle="bold" />
-
-        <RadioGroup
-            android:id="@+id/rgCamera"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="#151D1A"
-            android:orientation="horizontal"
-            android:padding="12dp">
-
-            <RadioButton
-                android:id="@+id/rbBackCamera"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:buttonTint="#00D6A0"
-                android:checked="true"
-                android:text="Back Camera"
-                android:textColor="#FFFFFF" />
-
-            <RadioButton
-                android:id="@+id/rbFrontCamera"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:buttonTint="#00D6A0"
-                android:text="Front Camera"
-                android:textColor="#FFFFFF" />
-
-        </RadioGroup>
-
-        <!-- VIDEO QUALITY -->
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:text="VIDEO QUALITY"
-            android:textColor="#00D6A0"
-            android:textSize="13sp"
-            android:textStyle="bold" />
-
-        <Spinner
-            android:id="@+id/spVideoQuality"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginTop="9dp"
-            android:background="#1B2521"
-            android:padding="10dp" />
-
-        <TextView
-            android:id="@+id/txtQualityInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="480p and 720p FREE | 1080p AD UNLOCK"
-            android:textColor="#00D6A0"
-            android:textSize="12sp" />
-
-        <!-- AUDIO -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="18dp"
-            android:background="#151D1A"
-            android:gravity="center_vertical"
-            android:padding="14dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Record Audio"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textSize="15sp" />
-
-            <Switch
-                android:id="@+id/switchAudio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:thumbTint="?attr/colorAccent" />
-
-        </LinearLayout>
-
-        <!-- RECORDING STORAGE -->
-
+        <!-- STORAGE INFORMATION -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="#151D1A"
             android:orientation="vertical"
-            android:padding="17dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="RECORDING STORAGE"
-                android:textColor="#FFFFFF"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <!-- TOTAL STORAGE -->
-
-            <TextView
-                android:id="@+id/txtStorageTotal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:text="TOTAL STORAGE: 1 GB"
-                android:textColor="#FFFFFF"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-
-            <!-- STORAGE PROGRESS -->
+            android:paddingTop="5dp"
+            android:visibility="gone">
 
             <ProgressBar
                 android:id="@+id/storageProgress"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
-                android:layout_height="12dp"
-                android:layout_marginTop="12dp"
+                android:layout_height="6dp"
                 android:max="100"
-                android:progress="0"
-                android:progressTint="#00D6A0"
-                android:progressBackgroundTint="#39443F" />
-
-            <!-- USED STORAGE -->
+                android:progress="0" />
 
             <TextView
                 android:id="@+id/txtStorageUsed"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="Used: 0 MB"
-                android:textColor="#FFFFFF"
-                android:textSize="13sp" />
-
-            <!-- AVAILABLE STORAGE -->
+                android:text="Used: 0 MB" />
 
             <TextView
                 android:id="@+id/txtStorageAvailable"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Available: 1 GB"
-                android:textColor="#00D6A0"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-
-            <!-- STORAGE PERCENTAGE -->
+                android:text="Available: 1 GB" />
 
             <TextView
                 android:id="@+id/txtStoragePercent"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="0% USED"
-                android:textColor="#A5AAA8"
-                android:textSize="12sp" />
-
-            <!-- OLD STORAGE ID - KEPT FOR COMPATIBILITY -->
+                android:text="0%" />
 
             <TextView
                 android:id="@+id/txtStorageInfo"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="0 MB USED / 1 GB FREE"
-                android:textColor="#00D6A0"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-                android:text="Your free recording storage allowance"
-                android:textColor="#A5AAA8"
-                android:textSize="12sp" />
+                android:text="Storage information" />
 
         </LinearLayout>
 
-        <!-- START / STOP RECORDING -->
-
-        <Button
-            android:id="@+id/btnStartRecording"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="#00D6A0"
-            android:text="● START RECORDING"
-            android:textColor="#07100D"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <!-- RECORDINGS -->
-
-        <Button
-            android:id="@+id/btnRecordings"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginTop="13dp"
-            android:backgroundTint="#1B2521"
-            android:text="MY RECORDINGS"
-            android:textColor="#FFFFFF" />
-
-        <!-- SETTINGS -->
-
-        <Button
-            android:id="@+id/btnSettings"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="#1B2521"
-            android:text="SETTINGS"
-            android:textColor="#FFFFFF" />
-
-        <!-- FOOTER -->
-
-        <TextView
+        <!-- FIRST BANNER SPACE -->
+        <FrameLayout
+            android:id="@+id/bannerStorageAd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:visibility="gone" />
+
+        <!-- CAMERA PREVIEW CONTAINER -->
+        <FrameLayout
+            android:id="@+id/cameraPreviewContainer"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/txtPreviewPlaceholder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Camera Preview" />
+
+        </FrameLayout>
+
+        <!-- SECOND BANNER SPACE -->
+        <FrameLayout
+            android:id="@+id/bannerSettingsAd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <!-- FLEXIBLE EMPTY SPACE -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- RECORDING TIMER -->
+        <TextView
+            android:id="@+id/txtRecordingTimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Use responsibly and follow local laws."
-            android:textColor="#777F7B"
-            android:textSize="12sp" />
+            android:text="00:00:00"
+            android:textColor="#111111"
+            android:textSize="54sp"
+            android:textStyle="bold" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/txtQualityInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="5dp"
+            android:paddingBottom="18dp"
+            android:text="Tap to record. You can lock the phone."
+            android:textColor="#555B55"
+            android:textSize="17sp" />
 
-</ScrollView>
+        <!-- FLASH, START AND PORTRAIT BUTTONS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="205dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnFlash"
+                    android:layout_width="82dp"
+                    android:layout_height="82dp"
+                    android:backgroundTint="#DDF5E1"
+                    android:text="ϟ"
+                    android:textColor="#17221A"
+                    android:textSize="35sp"
+                    app:cornerRadius="50dp"
+                    app:elevation="0dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="7dp"
+                    android:text="Flash"
+                    android:textColor="#303830"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.65"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnStartRecording"
+                    android:layout_width="178dp"
+                    android:layout_height="178dp"
+                    android:backgroundTint="#16864D"
+                    android:text="▣&#10;Start"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="100dp"
+                    app:elevation="0dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPortrait"
+                    android:layout_width="82dp"
+                    android:layout_height="82dp"
+                    android:backgroundTint="#DDF5E1"
+                    android:text="▱"
+                    android:textColor="#17221A"
+                    android:textSize="35sp"
+                    app:cornerRadius="50dp"
+                    app:elevation="0dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                 
